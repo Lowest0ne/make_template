@@ -6,6 +6,16 @@ exec=prog
 CXXFLAGS+=-std=c++11 -Wall -Wextra -pedantic -Werror
 LDFLAGS+=
 
+debug:CXXFLAGS+=-g -O2
+debug:all
+
+release:CXXFLAGS+=-O6
+release:all
+
+profile:CXXFLAGS+=-pg -O6
+profile:LDFLAGS+=-pg
+profile:all
+
 all: $(depends) $(exec)
 
 $(exec):$(objects)
