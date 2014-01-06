@@ -1,4 +1,7 @@
-sources=$(wildcard src/*.cpp src/functions/*.cpp)
+sources=$(wildcard   \
+  src/*.cpp          \
+  src/functions/*.cpp\
+)
 depends=$(sources:%.cpp=%.d)
 objects=$(sources:%.cpp=%.o)
 exec=prog
@@ -23,8 +26,7 @@ $(exec):$(objects)
 
 %.d:%.cpp
 	@$(CXX) -MM $< |\
-	sed "s,\([a-z]\+\)\.o:,src/\1\.o:,g" |\
-	sed "s,:, $@:,g" >$@
+	sed "s,\(^.*\.o\),$(@D)/\1 $@,g" >$@
 
 -include $(depends)
 
