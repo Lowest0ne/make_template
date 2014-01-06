@@ -1,15 +1,27 @@
-VPATH=src
-CPPFLAGS+= -std=c++11 -Wall -Wextra -pedantic
+CPPFLAGS+= -std=c++11 -Wall -Wextra -pedantic -Werror
 LDFLAGS+=
 
-sources = $(wildcard src/*.cpp)
-objects = $(patsubst %.cpp, %.o, $(sources))
+sources=$(wildcard src/*.cpp src/functions/*.cpp)
+objects=$(sources:%.cpp=%.o)
+depends=$(sources:%.cpp=%.d)
 
-exec = prog
+exec=prog
 
-$(exec): $(objects)
-	$(CXX) -o $@ $^ $(LDFLAGS)
+all: $(deps) $(exec)
+
+deps: $(depends)
+
+$(exec):$(objects)
+	$(CXX) -o $@ $(objects) $(LDFLAGS)
+
+%.d: %.cpp
+	@set -e; rm -f $@; \
+	$(CC) -MM $(CPPFLAGS) $< > $@.$$$$; \
+	sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$ > $@; \
+	rm -f $@.$$$$
+
+-include $(sources:.cpp=.d)
 
 .PHONY: clean
 clean:
-	rm $(objects) $(exec)
+	rm $(depends) $(objects) $(exec)

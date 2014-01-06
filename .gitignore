@@ -1,2 +1,4 @@
+# Ignore file created by make
 prog
 *.o
+*.d
