@@ -25,7 +25,7 @@ $(exec):$(objects)
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
 %.d:%.cpp
-	@$(CXX) -MM $< |\
+	@$(CXX) -std=c++11 -MM $< |\
 	sed "s,\(^.*\.o\),$(@D)/\1 $@,g" >$@
 
 -include $(depends)
