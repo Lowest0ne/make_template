@@ -1,7 +1,7 @@
-#include "functions/func.h"
+#include <iostream>
 
 int main( void )
 {
-  function();
+  std::cout << "It Works\n";
   return 0;
 }

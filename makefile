@@ -1,6 +1,5 @@
 sources=$(wildcard   \
   src/*.cpp          \
-  src/functions/*.cpp\
 )
 depends=$(sources:%.cpp=%.d)
 objects=$(sources:%.cpp=%.o)
