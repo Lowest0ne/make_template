@@ -2,3 +2,7 @@
 prog
 *.o
 *.d
+
+# Ignore profiling files
+gmon.out
+profile.txt
