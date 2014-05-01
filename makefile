@@ -18,6 +18,9 @@ profile:CXXFLAGS+=-pg -O6
 profile:LDFLAGS+=-pg
 profile:all
 
+glib_profile: CXXFLAGS+= -O6 -D_GLIBCXX_PROFILE
+glib_profile: all
+
 all: $(depends) $(exec)
 
 $(exec):$(objects)

@@ -6,3 +6,6 @@ prog
 # Ignore profiling files
 gmon.out
 profile.txt
+
+# Ignore Glib Profile
+/libstdcxx-profile.*
