@@ -5,7 +5,7 @@ depends=$(sources:%.cpp=%.d)
 objects=$(sources:%.cpp=%.o)
 exec=prog
 
-CXXFLAGS+=-std=c++11 -Wall -Wextra -pedantic -Werror
+CXXFLAGS+=-std=c++11 -Wall -Wextra -pedantic
 LDFLAGS+=
 
 debug:CXXFLAGS+=-g -O2
@@ -27,7 +27,7 @@ $(exec):$(objects)
 	$(CXX) -o $@ $^ $(LDFLAGS)
 
 %.d:%.cpp
-	@$(CXX) -std=c++11 -MM $< |\
+	@$(CXX) $(CXXFLAGS) -MM $< |\
 	sed "s,\(^.*\.o\),$(@D)/\1 $@,g" >$@
 
 -include $(depends)
