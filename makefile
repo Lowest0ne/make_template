@@ -5,7 +5,7 @@ depends=$(sources:%.cpp=%.d)
 objects=$(sources:%.cpp=%.o)
 exec=prog
 
-CXXFLAGS+=-std=c++11 -Wall -Wextra -pedantic -Iinclude
+CXXFLAGS+=-std=c++11 -Wall -Wextra -pedantic
 LDFLAGS+=
 
 debug:CXXFLAGS+=-g -O2
