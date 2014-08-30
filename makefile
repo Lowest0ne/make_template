@@ -1,6 +1,4 @@
-sources=$(wildcard   \
-  src/*.cpp          \
-)
+sources=$(shell find src -name '*.cpp')
 depends=$(sources:%.cpp=%.d)
 objects=$(sources:%.cpp=%.o)
 exec=prog
